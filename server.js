@@ -7,8 +7,10 @@ var express 	= require('express');
 var app 		= express();
 var bodyParser 	= require('body-parser');
 var mongoose	= require('mongoose');
+var fs			= require('fs');
+var config 		= require('./config/mongo.json');
 
-mongoose.connect('mongodb://namsek.info:27017/bear');
+mongoose.connect('mongodb://'+ config.user +':'+ config.pass +'@' + config.host);
 	
 // configure app to use bodyParser()
 // this will let us get the data from a POST
