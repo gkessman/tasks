@@ -1,90 +1,82 @@
 var express = require('express');
-var Bear = require('../models/bear');
+var Todo = require('../models/todos');
 
-// ROUTES FOR OUR API
-// ====================================================================================================================
-
-// middleware to use for all requests
-// router.use(function(req, res, next) {
-// 	console.log('something is happening.');
-// 	next();
-// });
-
+// api routes ==========================================================
 module.exports = (function() {
 	'use strict';
 	var api = express.Router(); // get an instance of the express Router
 
 	api.get('/', function(req, res) {
-		res.json({ message: 'hooray! welcome to our api!' });
+		res.json({ message: 'Root API endpoint' });
 	});
 
-	api.route('/bears')
+	api.route('/todos')
 
-	// create a bear (accessed at POST http://localhost:8080/api/bears)
+	// create a todo (accessed at POST http://localhost:8080/api/todos)
 	.post(function(req, res) {
 
-		var bear = new Bear(); // creates a new instance of a Bear model
-		bear.name = req.body.name; // set the bear's name (comes from request)
-		console.log('bear name! ' + bear.name);
-
-		bear.save(function(err) {
+		// create a todo, information comes from AJAX request from Angular
+		Todo.create({
+			text: req.body.text,
+			done: false
+		}, function(err, todo) {
 			if (err)
 				res.send(err);
 
-			res.json({
-				message: 'Bear created!'
+			Todo.find(function(err, todos) {
+				if (err)
+					res.send(err)
+				res.json(todos);
 			});
-		})
+		});
 	})
 
-	// get list of current bears in data store
+	// get list of current todos in data store
 	.get(function(req, res) {
-		Bear.find(function(err, bears) {
+		Todo.find(function(err, todos) {
 			if (err)
 				res.send(err);
-
-			res.json(bears);
+			res.json(todos);
 		});
-
 	});
 
-	api.route('/bears/:bear_id')
+	api.route('/todos/:todo_id')
 
-	// get the bear with that id
+	// get the todo with that id
 	.get(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Todo.findById(req.params.todo_id, function(err, todo) {
 			if (err)
 				res.send(err);
-			res.json(bear);
+			res.json(todo);
 		});
 	})
 
 	.put(function(req, res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Todo.findById(req.params.todo_id, function(err, todo) {
 			if (err)
 				res.send(err);
-			bear.name = req.body.name;
+			todo.name = req.body.name;
 
-			bear.save(function(err) {
+			todo.save(function(err) {
 				if (err)
 					res.send(err);
-				res.json({
-					message: 'Bear updated!'
-				});
+				res.json({ message: 'Todo updated!' });
 			});
 		});
 	})
 
 	.delete(function(req, res) {
-		Bear.remove({
-			_id: req.params.bear_id
-		}, function(err, bear) {
+		Todo.remove({
+			_id: req.params.todo_id
+		}, function(err, todo) {
 			if (err)
 				res.send(err);
 
-			res.json({
-				message: 'Successfully deleted'
-			});
+			Todo.find(function(err, todos) {
+				if (err)
+					res.send(err)
+				res.json(todos);
+			})
 		});
 	});
 

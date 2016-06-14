@@ -5,7 +5,7 @@ module.exports = (function() {
 	var router = express.Router();
 	
 	router.get('/', function(req, res) {
-		res.send("RESTful Webservice Main Page");
+		res.redirect('/index.html');
 	});
 
 	return router;
