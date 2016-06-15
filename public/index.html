@@ -20,43 +20,40 @@
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
 <body ng-controller="mainController">
-	<div class="container">
+	<div class="row">
 
 		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h1>My Todo List <span class="label label-info">{{ todos.length }}</span></h1>
+		<div class="large-11 large-centered">
+			<div class="columns callout secondary large text-center">
+				<h1>My Todo List <span class="label label-info">{{ todos.length }}</span></h1>
+			</div>
 		</div>
-
+	</div>
+	<div class="row">
 		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-
-				<div class="list-group">
-					<button type="button" class="list-group-item" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id)"> 
-						{{ todo.text }}
-						<span class="timestamp"> {{ todo.time }} </span>
-					</button> 
-						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }} -->
-					<!-- </li> -->
-				</div>
-
+		<div id="todo-list" class="large-9 large-centered columns">
+			<div class="stacked button-group large">
+				<a href="#" class="button" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id)">{{ todo.text }}
+					<!-- <span class="timestamp"> {{ todo.time }} </span> -->
+				</a>
 			</div>
 
 		</div>
+
 	</div>
 
 	<!-- FORM TO CREATE TODOS -->
 	<div id="todo-form" class="row">
-	<div class="col-sm-6 col-sm-offset-3 text-center">
+		<div class="large-8 large-centered text-center">
 			<form>
 				<div class="form-group">
 
 					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-					<input type="text" class="form-control input-lg text-center" placeholder="I want to detect/capture dark matter" ng-model="formData.text">
+					<input type="text" class="form-control text-center" placeholder="I want to detect/capture dark matter" ng-model="formData.text">
 				</div>
 
 				<!-- createToDo() WILL CREATE NEW TODOS -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				<button type="submit" class="button success large" ng-click="createTodo()">Add</button>
 			</form>
 		</div>
 	</div>
