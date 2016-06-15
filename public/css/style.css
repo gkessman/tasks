@@ -29,3 +29,7 @@ body {
 .left {
 	text-align: left;
 }
+
+.label-info {
+	font-size: 26px;
+}
