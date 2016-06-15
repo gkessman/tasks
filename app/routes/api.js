@@ -7,7 +7,9 @@ module.exports = (function() {
 	var api = express.Router(); // get an instance of the express Router
 
 	api.get('/', function(req, res) {
-		res.json({ message: 'Root API endpoint' });
+		res.json({
+			message: 'Root API endpoint'
+		});
 	});
 
 	api.route('/todos')
@@ -18,6 +20,7 @@ module.exports = (function() {
 		// create a todo, information comes from AJAX request from Angular
 		Todo.create({
 			text: req.body.text,
+			time: new Date().toISOString(),
 			done: false
 		}, function(err, todo) {
 			if (err)
@@ -60,7 +63,11 @@ module.exports = (function() {
 			todo.save(function(err) {
 				if (err)
 					res.send(err);
-				res.json({ message: 'Todo updated!' });
+				Todo.find(function(err, todos) {
+					if (err)
+						res.send(err)
+					res.json(todos);
+				});
 			});
 		});
 	})
