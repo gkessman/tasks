@@ -19,8 +19,13 @@ body {
 	margin-bottom:50px; 
 }
 	
-/*.timestamp { 
+.timestamp { 
 	float: right; 
-	font-size: .8em; 
+	font-size: .6em; 
 	opacity: .5;
-}*/
+	margin-top: 5px;
+}
+
+.left {
+	text-align: left;
+}

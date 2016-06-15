@@ -43,7 +43,7 @@ angular.module('todoController', [])
 	$scope.timestamp = function(data) {
 		$.each(data, function(i, v) {
 			var t = new Date(v.time);
-			v.time = t.getMonth() + 1 + '/' + t.getDate() + '/' + t.getFullYear();
+			v.time = 'Added ' + (t.getMonth() + 1) + '/' + t.getDate() + '/' + t.getFullYear();
 		});
 
 		return data;
