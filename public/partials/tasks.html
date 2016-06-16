@@ -1,0 +1,35 @@
+<!-- HEADER AND TODO COUNT -->
+	<div class="row">
+		<div class="large-11 large-centered">
+			<div class="columns callout secondary large text-center">
+				<h1>Todo List <span class="label label-info">{{ todos.length }}</span></h1>
+			</div>
+		</div>
+	</div>
+	
+	<!-- TODO LIST -->
+	<div class="row">
+		<div id="todo-list" class="large-9 large-centered columns">
+			<div class="stacked button-group primary large">
+				<a href="#" class="button left" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id)">{{ todo.text }}
+					<span class="timestamp"> {{ todo.time }} </span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- FORM TO CREATE TODOS -->
+	<div id="todo-form" class="row">
+		<div class="large-8 large-centered text-center">
+			<form>
+				<div class="form-group">
+
+					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					<input type="text" class="form-control text-center" placeholder="I want to detect/capture dark matter" ng-model="formData.text">
+				</div>
+
+				<!-- createToDo() WILL CREATE NEW TODOS -->
+				<button type="submit" class="button secondary large" ng-click="createTodo()">Add</button>
+			</form>
+		</div>
+	</div>
