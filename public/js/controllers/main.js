@@ -4,7 +4,6 @@ var todoController = angular.module('todoController', []);
 // inject the Todo service factory into our controller
 todoController.controller('TodoController', function($scope, $http, Todos) {
 	$scope.formData = {};
-
 	// GET ===================================================
 	Todos.get()
 		.success(function(data) {
@@ -33,9 +32,8 @@ todoController.controller('TodoController', function($scope, $http, Todos) {
 	$scope.deleteTodo = function(id) {
 		Todos.delete(id)
 			.success(function(data) {
-				$scope.todos = data;
 				$scope.timestamp(data);
-				$scope.refresh();
+				$scope.todos = data;
 			});
 	};
 
