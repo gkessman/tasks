@@ -78,7 +78,6 @@ module.exports = (function() {
 		}, function(err, todo) {
 			if (err)
 				res.send(err);
-
 			Todo.find(function(err, todos) {
 				if (err)
 					res.send(err)
