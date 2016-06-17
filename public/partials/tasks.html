@@ -11,7 +11,7 @@
 	<div class="row">
 		<div id="todo-list" class="large-9 large-centered columns">
 			<div class="stacked button-group primary large">
-				<a href="#" class="button left" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id)">{{ todo.text }}
+				<a href="#" class="button left" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id); $event.stopPropagation();">{{ todo.text }}
 					<span class="timestamp"> {{ todo.time }} </span>
 				</a>
 			</div>

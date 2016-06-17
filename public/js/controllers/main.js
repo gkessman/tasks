@@ -33,8 +33,9 @@ todoController.controller('TodoController', function($scope, $http, Todos) {
 	$scope.deleteTodo = function(id) {
 		Todos.delete(id)
 			.success(function(data) {
-				$scope.timestamp(data);
 				$scope.todos = data;
+				$scope.timestamp(data);
+				$scope.refresh();
 			});
 	};
 
