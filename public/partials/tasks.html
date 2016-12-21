@@ -1,35 +1,38 @@
+<div class="container">
+
 <!-- HEADER AND TODO COUNT -->
-	<div class="row">
-		<div class="large-11 large-centered">
-			<div class="columns callout secondary large text-center">
-				<h1>Todo List <span class="label label-info">{{ todos.length }}</span></h1>
-			</div>
-		</div>
-	</div>
-	
-	<!-- TODO LIST -->
-	<div class="row">
-		<div id="todo-list" class="large-9 large-centered columns">
-			<div class="stacked button-group primary large">
-				<a href="#" class="button left" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id); $event.stopPropagation();">{{ todo.text }}
+<div class="page-header center">
+	<h1>Todo List <span class="label label-sm label-primary">{{ todos.length }}</span></h1>
+</div>
+
+<!-- TODO LIST -->
+<div class="row">
+	<div id="todo-list" class="col-md-6 col-md-offset-3 sharp">
+		<divul class="list-group sharp">
+			<li href="#" class="list-group-item colored sharp" ng-repeat="todo in todos" ng-click="deleteTodo(todo._id); $event.stopPropagation();">
+				<h4>
+					{{ todo.text }}	
+				</h4>
 					<span class="timestamp"> {{ todo.time }} </span>
-				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- FORM TO CREATE TODOS -->
+<div id="todo-form" class="row">
+	<div class=" col-md-6 col-md-offset-3 text-center">
+		<form>
+			<div class="form-group">
+
+				<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+				<input type="text" class="form-control text-center sharp" placeholder="I want to detect/capture dark matter" ng-model="formData.text">
 			</div>
-		</div>
+
+			<!-- createToDo() WILL CREATE NEW TODOS -->
+			<button type="submit" class="btn btn-primary btn-md outline sharp" ng-click="createTodo()">Add</button>
+		</form>
 	</div>
+</div>
 
-	<!-- FORM TO CREATE TODOS -->
-	<div id="todo-form" class="row">
-		<div class="large-8 large-centered text-center">
-			<form>
-				<div class="form-group">
-
-					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-					<input type="text" class="form-control text-center" placeholder="I want to detect/capture dark matter" ng-model="formData.text">
-				</div>
-
-				<!-- createToDo() WILL CREATE NEW TODOS -->
-				<button type="submit" class="button secondary large" ng-click="createTodo()">Add</button>
-			</form>
-		</div>
-	</div>
+</div>
